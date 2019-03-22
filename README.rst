@@ -1,3 +1,7 @@
+.. image:: https://travis-ci.org/tanayseven/algostructures.svg?branch=master
+    :target: https://travis-ci.org/tanayseven/algostructures
+
+
 AlgoStructures
 ==============
 
