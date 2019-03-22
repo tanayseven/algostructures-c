@@ -1,0 +1,4 @@
+compiler: clang
+
+before_install:
+  - make clean build
