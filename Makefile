@@ -9,8 +9,11 @@ TEST_BIN=./bin/tests
 test: $(TEST_BIN)
 	$(TEST_BIN)
 
-./bin/tests: $(TEST_SRC)
+./bin/tests: $(TEST_SRC) ./bin
 	$(CC) -o $(TEST_BIN) $(TEST_SRC) $(SRC) $(CFLAGS)
+
+./bin:
+	mkdir bin
 
 .PHONY clean:
 clean:
