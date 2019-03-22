@@ -1,0 +1,17 @@
+CC=clang
+CFLAGS:=-Wall -I./include -I./src -I./test
+SRC=src/array_search.c
+TEST_SRC=test/main.c test/test_array_search.c test/uassert.c
+PERF_TEST_SRC=perf_test/main.c
+TEST_BIN=./bin/tests
+
+.PHONY test:
+test: $(TEST_BIN)
+	$(TEST_BIN)
+
+./bin/tests: $(TEST_SRC)
+	$(CC) -o $(TEST_BIN) $(TEST_SRC) $(SRC) $(CFLAGS)
+
+.PHONY clean:
+clean:
+	rm -rf ./bin/*
