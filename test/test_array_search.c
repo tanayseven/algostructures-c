@@ -19,7 +19,22 @@ void test_sequential_invalid_key(void) {
     ASSERT(expected_value == actual_value);
 }
 
+void test_parallel_valid_key(void) {
+    const int expected_value = 7;
+    const int actual_value = search_parallel(search_array, search_array_length, valid_search_key);
+    ASSERT(expected_value == actual_value);
+}
+
+void test_parallel_invalid_key(void) {
+    const int expected_value = -1;
+    const int actual_value = search_parallel(search_array, search_array_length, invalid_search_key);
+    ASSERT(expected_value == actual_value);
+}
+
 void search_test_suite(void) {
     test_sequential_valid_key();
     test_sequential_invalid_key();
+
+    test_parallel_valid_key();
+    test_parallel_invalid_key();
 }
