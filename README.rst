@@ -2,11 +2,11 @@
     :target: https://travis-ci.org/tanayseven/algostructures
 
 
-AlgoStructures
-==============
+AlgoStructures in C
+===================
 
-A collection of algorithms and datastructures which are written in C and Haskell
---------------------------------------------------------------------------------
+A collection of algorithms and datastructures which are written in C
+--------------------------------------------------------------------
 
 Setting up and using
 ====================
