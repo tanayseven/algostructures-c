@@ -1,2 +1,4 @@
-.vscode
-bin
+.vscode/
+build/
+*__pycache__/
+array_search.*

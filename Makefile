@@ -1,25 +1,21 @@
 CC=gcc
-CFLAGS:=-Wall -I./include -I./src -I./test -std=c11 -fopenmp
+CFLAGS:=-Wall -Werror -fpic -c -I./src -I./include -std=c11 -fopenmp
 SRC=src/array_search.c
-TEST_SRC=test/main.c test/test_array_search.c test/uassert.c
 PERF_TEST_SRC=perf_test/main.c
-TEST_BIN=./bin/tests
+BUILD_SO=./build/algostrutures.so
+BUILD_O=./build/algostrutures.o
 
-.PHONY test:
-test: build
-	$(TEST_BIN)
+build: $(BUILD_SO)
 
-build: $(TEST_BIN)
+$(BUILD_SO): $(BUILD_O)
+	$(CC) -shared -o $(BUILD_SO) $(BUILD_O)
 
-./bin/tests: $(TEST_SRC) ./bin
-	$(CC) -o $(TEST_BIN) $(TEST_SRC) $(SRC) $(CFLAGS)
-
-./bin:
-	mkdir bin
+$(BUILD_O): $(SRC)
+	$(CC) -o $(BUILD_O) $(SRC) $(CFLAGS)
 
 .PHONY clean:
 clean:
-	rm -rf ./bin/*
+	rm -rf ./build/*
 
 .PHONY setup_on_mac:
 setup_on_mac:
