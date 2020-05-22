@@ -1,4 +1,4 @@
-from array_search import lib, ffi
+from algostructures._array_search import lib
 
 input_list = [34, 23, 56, 38, 94, 35, 75, 28, 48, 47]
 valid_search_key = 28
