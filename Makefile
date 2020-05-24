@@ -8,14 +8,15 @@ TEST_CACHE_FILES:=$(shell find test/ -name "*.pyc")
 SRC_C:=$(shell find algostructures/ -name "*.c" -or -name "*.h")
 COMPILED_C:=$(shell find algostructures/ -name "_array_search*.c" -or -name "_array_search*.o" -or -name "_array_search*.so")
 
-all: clean install-deps build test
+all: clean build test
 
 .PHONY build:
-build: $(SRC_C)
+build: $(SRC_C) wheel-package install-deps
 	python -m algostructures.build
+	python setup.py bdist_wheel
 
 .PHONY install-deps:
-install-deps: pip-tools requirements.txt requirements-dev.txt
+install-deps: pip-tools-package requirements.txt requirements-dev.txt
 	pip-sync requirements.txt requirements-dev.txt
 
 requirements.txt: requirements.in
@@ -25,16 +26,20 @@ requirements-dev.txt: requirements-dev.in
 	pip-compile --generate-hashes requirements-dev.in
 
 .PHONY install-deps:
-update-deps: pip-tools requirements.txt requirements-dev.txt
+update-deps: pip-tools-package requirements.txt requirements-dev.txt
 	pip-sync requirements.txt requirements-dev.txt
 
-.PHONY pip-tools:
-pip-tools:
+.PHONY pip-tools-package:
+pip-tools-package:
 	python -c "import piptools" || pip install pip-tools
+
+.PHONY wheel-package:
+wheel-package:
+	python -c "import wheel" || pip install wheel
 
 .PHONY clean:
 clean:
-	rm -rf ./algostrutures/_array_search*
+	rm -rf ./algostrutures/_array_search* dist/
 
 .PHONY test:
 test: $(SRC_CACHE_FILES) $(TEST_CACHE_FILES) $(COMPILED_C)

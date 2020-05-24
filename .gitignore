@@ -1,6 +1,7 @@
 .vscode/
-build/
+.idea/
 *__pycache__/
 .pytest_cache/
-array_search.*
 algostructures/_array_search*
+algostructures/algostructures.egg-info/
+dist/
