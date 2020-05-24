@@ -1,6 +1,4 @@
-language: c
+language: python
 
-compiler: gcc
-
-script:
-  - make clean build test
+script: 
+  - make all

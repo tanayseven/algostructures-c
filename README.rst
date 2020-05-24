@@ -11,30 +11,33 @@ A collection of algorithms and datastructures which are written in C
 Setting up and using
 ====================
 
-Prerequisites for Mac OSX
--------------------------
-
-* Docker
-
-Prerequisites for Linux
------------------------
+Prerequisites
+-------------
 
 * Latest version of GCC
+* Makefile build system
+* Virtual environment activated
 
-Usage Instructions for Mac OSX
+Virtual environment management
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
 
-    docker build -t algostructures_test .    # Build the image that can run the tests
+    mkvirtualenv --python=`which python3.8` algostructures-c        # Create a new virtual environment named algorithms-c
 
-    docker run -it --rm --name algostructures_test algostructures_test      # Run the tests in the container
+    workon algostructures-c                                         # Activate a virtual environment
 
-Usage Instructions for Linux
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Usage Instructions (make sure to have your virtual environment activated)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
 
-    make clean build   # Build all the necessary binaries for running 
+    make help       # Print all the possible commands
 
-    make test          # Run the tests binary that is in bin/ directory
+
+License
+~~~~~~~
+
+This project is licensed under the MIT license, for more details have a look at `LICENSE <./LICENSE>`_

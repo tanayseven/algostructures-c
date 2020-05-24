@@ -1,5 +1,6 @@
 .vscode/
 build/
 *__pycache__/
+.pytest_cache/
 array_search.*
 algostructures/_array_search*
