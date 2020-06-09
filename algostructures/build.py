@@ -21,7 +21,7 @@ ffi.set_source(
     source,
     include_dirs=["algostructures/search/", "algostructures/include/"],
     extra_compile_args=['-fopenmp'],
-    extra_link_args=['-fopenmp'],
+    extra_link_args=['-fopenmp', '-lm'],
 )
 
 if __name__ == "__main__":
