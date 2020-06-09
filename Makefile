@@ -45,6 +45,10 @@ clean:
 test: $(SRC_CACHE_FILES) $(TEST_CACHE_FILES) $(COMPILED_C)
 	pytest $(PYTHONPATH)
 
+.PHONY benchmark:
+benchmark:
+	python -m algostructures.benchmark
+
 .PHONY help:
 help:
 	@echo "** MAKE TARGETS **"
