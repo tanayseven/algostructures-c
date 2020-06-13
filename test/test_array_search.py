@@ -1,7 +1,7 @@
 from collections import namedtuple
 
 import pytest
-from algostructures._array_search import lib
+from algostructures.search import py_search, py_search_parallel
 
 TestCase = namedtuple("TestCase", ["name", "input_list", "search_key", "expected_result"])
 
@@ -30,12 +30,12 @@ test_cases = [
 @pytest.mark.parametrize("name,input_list,search_key,expected_result", test_cases)
 def test_sequential(name, input_list, search_key, expected_result):
     print(name)
-    acutal_result = lib.search(input_list, len(input_list), search_key)
+    acutal_result = py_search(input_list, len(input_list), search_key)
     assert acutal_result == expected_result
 
 
 @pytest.mark.parametrize("name,input_list,search_key,expected_result", test_cases)
 def test_parallel(name, input_list, search_key, expected_result):
     print(name)
-    acutal_result = lib.search_parallel(input_list, len(input_list), search_key)
+    acutal_result = py_search_parallel(input_list, len(input_list), search_key)
     assert acutal_result == expected_result

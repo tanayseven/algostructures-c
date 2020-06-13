@@ -12,8 +12,7 @@ all: clean build test
 
 .PHONY build:
 build: $(SRC_C) wheel-package install-deps
-	python -m algostructures.build
-	python setup.py bdist_wheel
+	python setup.py build_ext --inplace
 
 .PHONY install-deps:
 install-deps: pip-tools-package requirements.txt requirements-dev.txt
@@ -39,7 +38,7 @@ wheel-package:
 
 .PHONY clean:
 clean:
-	rm -rf ./algostrutures/_array_search* dist/
+	rm -rf ./algostrutures/search.c ./algostructures/search.cpython* ./build
 
 .PHONY test:
 test: $(SRC_CACHE_FILES) $(TEST_CACHE_FILES) $(COMPILED_C)
@@ -49,13 +48,18 @@ test: $(SRC_CACHE_FILES) $(TEST_CACHE_FILES) $(COMPILED_C)
 benchmark:
 	python -m algostructures.benchmark
 
+.PHONY organize-contents:
+organize-contents:
+	sort .gitignore -o .gitignore
+
 .PHONY help:
 help:
 	@echo "** MAKE TARGETS **"
-	@echo "build        : compile the algorithms written in C and also the python wheel"
-	@echo "update-deps  : update all the python packages in the requirements[-dev].in files"
-	@echo "install-deps : install all the dependencies from the requirements[-dev].txt files"
-	@echo "clean        : delete the compiled files of algorithms written in C"
-	@echo "test         : run all the unit tests written"
-	@echo "run          : start the algostructures program in a RELP mode"
-	@echo "benchmark    : run benchmarking and generate report"
+	@echo "build                : compile the algorithms written in C and also the python wheel"
+	@echo "update-deps          : update all the python packages in the requirements[-dev].in files"
+	@echo "install-deps         : install all the dependencies from the requirements[-dev].txt files"
+	@echo "clean                : delete the compiled files of algorithms written in C"
+	@echo "test                 : run all the unit tests written"
+	@echo "run                  : start the algostructures program in a RELP mode"
+	@echo "benchmark            : run benchmarking and generate report"
+	@echo "organize-contents    : statically organize contents of files that can be oraganized"

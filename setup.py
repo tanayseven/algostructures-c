@@ -1,15 +1,18 @@
-from setuptools import setup, find_packages
+import re
 from os import path
 from typing import Optional, List
-import re
 
+from setuptools import setup, find_packages, Extension
+from Cython.Build import cythonize
 
 here = path.abspath(path.dirname(__file__))
+
 
 def get_package_name(line: str) -> Optional[str]:
     package_name_version_pattern = re.compile(r"[a-zA-Z0-9\-]*==[\d\.]*")
     matched_string = package_name_version_pattern.match(line)
     return matched_string if matched_string is None else matched_string.group(0)
+
 
 def fetch_installable_packages(packages: List[str]) -> List[str]:
     return list(filter(lambda element: element, map(get_package_name, f.readlines())))
@@ -43,7 +46,8 @@ setup(
     ],
     keywords='sample setuptools development algorithms datastructures',
     package_dir={'': 'algostructures'},
-    packages=find_packages(where='algostructures/'),  # Required
+    packages=find_packages(where='search/'),  # Required
+    ext_modules=cythonize([Extension("search", ["algostructures/search.pyx", "algostructures/search/array_search.c"], include_dirs=["algostructures/include/"], extra_compile_args=["-fopenmp"], extra_link_args=["-fopenmp"])]),
     python_requires='>=3.7, <4',
     install_requires=requirements,
     extras_require={
